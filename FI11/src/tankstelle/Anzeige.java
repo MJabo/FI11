@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 
 public class Anzeige {
+	
+	//Änderung
 
 	private JFrame frame;
 	private JTextField textFieldTankDiesel;
