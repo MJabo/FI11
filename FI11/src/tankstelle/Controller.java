@@ -16,6 +16,7 @@ public class Controller {
 	private SmartphoneApp app;
 	private Zapfsauule zapf;
 	private DefaultComboBoxModel<Tankpreis> listTankpreis = new DefaultComboBoxModel<>();
+	private double tank ;
 	
 	public Controller()
 	{
@@ -40,58 +41,81 @@ public class Controller {
 		zapf.getTextField().setText("0");
 		
 		
-		zapf.getButtonTanken().addMouseListener(new MouseAdapter() {
+		zapf.getButtonTanken().addMouseListener(new MouseAdapter() { //kurze Version Abstracte klasse
+			
+			Timer t;
 			
 			
 			
 			@Override
 			public void mousePressed(MouseEvent e)
 			{
-				double tank = Double.parseDouble((zapf.getTextField().getText()));
-				tank = tank + 0.1;
-				zapf.getTextField().setText(Double.toString(tank));
+				 t = new Timer();
+				 TimerTask time = new TimerTask() {
+				
+				@Override
+				public void run() 
+				{
+					
+					tanken();
+				}
+			};
+				t.schedule(time,1000,200);	
+			}
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				t.cancel();
+				t = null;
+				//time.cancel();	
+				
 				
 			}
+			
 		});
+		
+		//zapf.getButtonTanken().addMouseListener(pressTanken);
 		create.getSliderSprit().addChangeListener(temppreis);		
 	}
 	
+	public double gesamtPreisBerechnen(double liter)
+	{
+		Tankpreis preis = (Tankpreis) zapf.getComboBoxSpritsorte().getSelectedItem();
+		double ergebnis;
+		if(preis.getSprit() == "Diesel")
+		{
+			return ergebnis = liter * Double.parseDouble(zapf.getTextFieldPreis().getText());
+		}
+		else if(preis.getSprit() == "Super")
+		{
+			return ergebnis = liter * Double.parseDouble(zapf.getTextFieldGesamtPreis().getText());
+		}
+		else if(preis.getSprit() == "SuperE10")
+		{
+			return ergebnis = liter * Double.parseDouble(zapf.getTextFieldGesamtPreis().getText());
+		}
+		else
+		{
+			return 0;
+		}
+	}
 	
-	class Mouse implements MouseListener {
+	
+	class CreateTimer extends TimerTask
+	{
 
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void run() {
 			
-			
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			//zapf.getTextField().setText((0.1));
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 		
 	}
 	
+	
+	
+	
+
 	
 	public void spritErstellen()
 	{
@@ -126,14 +150,17 @@ public class Controller {
 	{
 		anzeige.getTextFieldTankDiesel().setText(Double.toString(listTankpreis.getElementAt(0).getPreis()));
 		app.getTextFieldAppDiesel().setText(Double.toString(listTankpreis.getElementAt(0).getPreis()));
+		zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(0).getPreis()));
 		
 		
 		anzeige.getTextFieldTankSuper().setText(Double.toString(listTankpreis.getElementAt(1).getPreis()));
 		app.getTextFieldSuper().setText(Double.toString(listTankpreis.getElementAt(1).getPreis()));
+		zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(1).getPreis()));
 		
 		
 		anzeige.getTextFieldTankSuperE10().setText(Double.toString(listTankpreis.getElementAt(2).getPreis()));
 		app.getTextFieldSuperE10().setText(Double.toString(listTankpreis.getElementAt(2).getPreis()));
+		zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(2).getPreis()));
 	}
 	
 	public void preisfestlegen(Tankpreis auswahl,double preis)
@@ -145,18 +172,33 @@ public class Controller {
 			
 			anzeige.getTextFieldTankDiesel().setText(Double.toString(auswahl.getPreis()));
 			app.getTextFieldAppDiesel().setText(Double.toString(auswahl.getPreis()));
+			zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(0).getPreis()));
 		}
 		else if(auswahl.getSprit() == "Super")
 		{
 			anzeige.getTextFieldTankSuper().setText(Double.toString(auswahl.getPreis()));
 			app.getTextFieldSuper().setText(Double.toString(auswahl.getPreis()));
+			zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(1).getPreis()));
 		}
 		else if(auswahl.getSprit() == "SuperE10")
 		{
 			anzeige.getTextFieldTankSuperE10().setText(Double.toString(auswahl.getPreis()));
 			app.getTextFieldSuperE10().setText(Double.toString(auswahl.getPreis()));
+			zapf.getTextFieldPreis().setText(Double.toString(listTankpreis.getElementAt(2).getPreis()));
 		}
 		
 		create.getTextFieldPreisProLiter().setText(Double.toString(auswahl.getPreis()));
 	}
+
+	private void tanken() {
+		 tank = Double.parseDouble((zapf.getTextField().getText()));
+		tank*=10;
+		tank =  tank + 1 ;
+		zapf.getTextField().setText(Double.toString(tank/10));
+		double gesamtPreis = gesamtPreisBerechnen(tank/10);
+		zapf.getTextFieldGesamtPreis().setText(Double.toString(gesamtPreis));
+		System.out.println("Start + "+ zapf.getTextField().getText());
+		
+		
+		}
 }

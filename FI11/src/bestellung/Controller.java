@@ -72,7 +72,7 @@ public class Controller {
 		try
 		{
 			String zeile = null;
-			BufferedReader in = new BufferedReader(new FileReader("src/pizzaAuswahl/Pizzasorten"));
+			BufferedReader in = new BufferedReader(new FileReader("src/bestellung/Pizzasorten"));
 			
 			try
 			{

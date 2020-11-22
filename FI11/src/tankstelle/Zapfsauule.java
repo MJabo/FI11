@@ -16,6 +16,10 @@ public class Zapfsauule {
 	private JComboBox comboBoxSpritsorte;
 	private JTextField textField;
 	private JButton ButtonTanken;
+	private JLabel labelZapfPreis;
+	private JTextField textFieldGesamtPreis;
+	private JLabel lblNewLabelPreisProLiter;
+	private JTextField textFieldPreis;
 
 	/**
 	 * Launch the application.
@@ -45,13 +49,17 @@ public class Zapfsauule {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 319, 189);
+		frame.setBounds(100, 100, 576, 255);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getLabelZapfsauule());
 		frame.getContentPane().add(getComboBoxSpritsorte());
 		frame.getContentPane().add(getTextField());
 		frame.getContentPane().add(getButtonTanken());
+		frame.getContentPane().add(getLabelZapfPreis());
+		frame.getContentPane().add(getTextFieldGesamtPreis());
+		frame.getContentPane().add(getLblNewLabelPreisProLiter());
+		frame.getContentPane().add(getTextFieldPreis());
 		frame.setVisible(true);
 	}
 	private JLabel getLabelZapfsauule() {
@@ -83,5 +91,36 @@ public class Zapfsauule {
 			ButtonTanken.setBounds(21, 82, 89, 23);
 		}
 		return ButtonTanken;
+	}
+	private JLabel getLabelZapfPreis() {
+		if (labelZapfPreis == null) {
+			labelZapfPreis = new JLabel("Preis");
+			labelZapfPreis.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			labelZapfPreis.setBounds(31, 126, 46, 14);
+		}
+		return labelZapfPreis;
+	}
+	protected JTextField getTextFieldGesamtPreis() {
+		if (textFieldGesamtPreis == null) {
+			textFieldGesamtPreis = new JTextField();
+			textFieldGesamtPreis.setBounds(134, 123, 107, 20);
+			textFieldGesamtPreis.setColumns(10);
+		}
+		return textFieldGesamtPreis;
+	}
+	private JLabel getLblNewLabelPreisProLiter() {
+		if (lblNewLabelPreisProLiter == null) {
+			lblNewLabelPreisProLiter = new JLabel("Preis pro Liter");
+			lblNewLabelPreisProLiter.setBounds(270, 34, 66, 14);
+		}
+		return lblNewLabelPreisProLiter;
+	}
+	protected JTextField getTextFieldPreis() {
+		if (textFieldPreis == null) {
+			textFieldPreis = new JTextField();
+			textFieldPreis.setBounds(356, 31, 98, 20);
+			textFieldPreis.setColumns(10);
+		}
+		return textFieldPreis;
 	}
 }
