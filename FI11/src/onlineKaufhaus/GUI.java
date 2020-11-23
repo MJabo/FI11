@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
@@ -65,6 +68,7 @@ public class GUI {
 		frame.getContentPane().add(getLblBild());
 		frame.setVisible(true);
 	}
+
 	protected JList getListWarehouse() {
 		if (listWarehouse == null) {
 			listWarehouse = new JList();
@@ -129,7 +133,10 @@ public class GUI {
 	protected JLabel getLblBild() {
 		if (lblBild == null) {
 			lblBild = new JLabel("New label");
-			lblBild.setBounds(30, 24, 264, 71);
+			/*ImageIcon imageIcon = new ImageIcon("src/onlineKaufhaus/Logo.jpg");
+			imageIcon.setImage(imageIcon.getImage().getScaledInstance(274, 71, Image.SCALE_DEFAULT));
+			lblBild.setIcon(imageIcon);*/
+			lblBild.setBounds(30, 24, 274, 71);
 		}
 		return lblBild;
 	}
