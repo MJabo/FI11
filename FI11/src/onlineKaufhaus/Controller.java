@@ -74,7 +74,7 @@ public class Controller {
 			System.out.println("Ware konnte nicht gelöscht werden");
 		}
 	}
-	//--------------------------------------------------------------------
+	//-------------------------------------------------------------
 	
 	private void auswahlHinzufuegen(List artikel)
 	{
