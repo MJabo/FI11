@@ -65,7 +65,7 @@ public class Controller {
 			for(Artikel s: tempArtikel)
 			{
 				auswahl.removeElement(s);
-				System.out.println(s);
+				//System.out.println(s);
 			}
 			grafik.getListShoppingCart().setModel(auswahl);
 		}
@@ -106,7 +106,7 @@ public class Controller {
 	
 	private void Produktadd()
 	{
-		listArtikel = dateiHandler.dateilesen(listArtikel,"src/onlineKaufhaus/Ware");
+		listArtikel = dateiHandler.dateilesen("src/onlineKaufhaus/Ware");
 		try
 		{
 			defListArtikel = new DefaultListModel();
