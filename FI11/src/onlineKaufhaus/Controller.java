@@ -1,9 +1,10 @@
 package onlineKaufhaus;
 
+import java.util.*;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -11,10 +12,18 @@ import javax.swing.ImageIcon;
 
 public class Controller {
 
+	private ActionListener auswaehlen;
+	private ActionListener entfernen;
+	
 	private GUI grafik;
+	
 	private Artikel artikel;
 	private ArrayList<Artikel> listArtikel;
 	private DefaultListModel<Artikel> defListArtikel;
+	private DefaultListModel<Artikel> auswahl = new DefaultListModel<>();
+	
+	//private ArrayList<Artikel> listauswahl = new ArrayList<>();
+	
 	private  DateiHandler dateiHandler;
 	private ActionListener wareAnzeigen;
 	
@@ -31,9 +40,60 @@ public class Controller {
 		grafik = new GUI();		
 		artikel = new Artikel();
 		dateiHandler = new DHIO();
+		
+		
 	
 		LogoEinfuegen();
 		Produktadd();
+		grafik.getBtnNewButtonAddWare().addActionListener(e -> auswahlHinzufuegen(grafik.getListWarehouse().getSelectedValuesList()));
+		grafik.getBtnNewButtonCancelWare().addActionListener(e -> auswahlEntfernen(grafik.getListShoppingCart().getSelectedValuesList()));
+		
+		Produktsave();
+		
+		
+		
+	}
+	
+	private void auswahlEntfernen(List artikel)
+	{
+		try
+		{
+			List<Artikel> tempArtikel = (List<Artikel>) artikel;
+			
+			//System.out.println(tempArtikel);
+		
+			for(Artikel s: tempArtikel)
+			{
+				auswahl.removeElement(s);
+				System.out.println(s);
+			}
+			grafik.getListShoppingCart().setModel(auswahl);
+		}
+		catch(Exception ex)
+		{
+			System.out.println("Ware konnte nicht gelöscht werden");
+		}
+	}
+	//--------------------------------------------------------------------
+	
+	private void auswahlHinzufuegen(List artikel)
+	{
+		try
+		{
+			List<Artikel> tempArtikel = (List<Artikel>) artikel;
+			//System.out.println(tempArtikel);
+			grafik.getListShoppingCart().setModel(auswahl);
+			for(Artikel s: tempArtikel)
+			{
+				auswahl.addElement(s);	
+				//System.out.println(s);
+			}
+				
+		}
+		catch(Exception ex)
+		{
+			System.out.println("konnte nicht in den Warenkorb eingefügt werden");
+		}
 	}
 
 	private void LogoEinfuegen() {
@@ -47,12 +107,23 @@ public class Controller {
 	private void Produktadd()
 	{
 		listArtikel = dateiHandler.dateilesen(listArtikel,"src/onlineKaufhaus/Ware");
-		defListArtikel = new DefaultListModel();
-		for(Artikel s:listArtikel)
+		try
 		{
-			defListArtikel.addElement(s);
-			System.out.println("Hallo");
+			defListArtikel = new DefaultListModel();
+			for(Artikel s:listArtikel)
+			{
+				defListArtikel.addElement(s);
+			}
+			grafik.getListWarehouse().setModel(defListArtikel);
 		}
-		grafik.getListWarehouse().setModel(defListArtikel);
+		catch(Exception ex)
+		{
+			System.out.println("Liste konnte nicht erstellt werden");
+		}
+	}
+	
+	private void Produktsave()
+	{
+		
 	}
 }

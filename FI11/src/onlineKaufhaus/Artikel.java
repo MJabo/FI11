@@ -2,6 +2,8 @@ package onlineKaufhaus;
 
 public class Artikel {
 
+	private static String[] artikelDaten= new String[3];
+	
 	private String artikelnummer;
 	private String artikel;
 	private String preis;
