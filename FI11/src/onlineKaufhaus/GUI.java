@@ -22,7 +22,7 @@ public class GUI {
 	private JButton btnNewButtonAddWare;
 	private JButton btnNewButtonCancelWare;
 	private JLabel labelShoppingCart;
-	private JTextField textField;
+	private JTextField textFieldKundenname;
 	private JLabel lblNewLabel;
 	private JButton buttonSubmitOrder;
 	private JLabel lblBild;
@@ -63,7 +63,7 @@ public class GUI {
 		frame.getContentPane().add(getBtnNewButtonAddWare());
 		frame.getContentPane().add(getBtnNewButtonCancelWare());
 		frame.getContentPane().add(getLabelShoppingCart());
-		frame.getContentPane().add(getTextField());
+		frame.getContentPane().add(getTextFieldKundenname());
 		frame.getContentPane().add(getLblNewLabel());
 		frame.getContentPane().add(getButtonSubmitOrder());
 		frame.getContentPane().add(getLblBild());
@@ -108,13 +108,13 @@ public class GUI {
 		}
 		return labelShoppingCart;
 	}
-	protected JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setBounds(136, 344, 209, 20);
-			textField.setColumns(10);
+	protected JTextField getTextFieldKundenname() {
+		if (textFieldKundenname == null) {
+			textFieldKundenname = new JTextField();
+			textFieldKundenname.setBounds(136, 344, 209, 20);
+			textFieldKundenname.setColumns(10);
 		}
-		return textField;
+		return textFieldKundenname;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {

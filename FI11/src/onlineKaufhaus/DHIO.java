@@ -5,9 +5,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+
+import javax.swing.DefaultListModel;
 
 public class DHIO extends DateiHandler {
 
@@ -42,6 +45,21 @@ public class DHIO extends DateiHandler {
 		
 		
 		
+	}
+
+	@Override
+	public void dateiSchreiben(String filePfad, DefaultListModel<Artikel> auswahl, String kunde) {
+		
+	
+		try
+		{
+			super.out = new BufferedWriter(new FileWriter(filePfad + '\\' + kunde + ".txt",true));
+			super.dateiSchreiben(auswahl);
+		}
+		catch(Exception ex)
+		{
+			System.out.println(ex);
+		}
 	}
 
 }

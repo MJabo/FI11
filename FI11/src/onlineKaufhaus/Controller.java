@@ -35,7 +35,16 @@ public class Controller {
 	public void setListArtikel(ArrayList<Artikel> listArtikel) {
 		this.listArtikel = listArtikel;
 	}
+	
+	public DefaultListModel<Artikel> getAuswahl() {
+		return auswahl;
+	}
 
+	/*
+	public void setAuswahl(DefaultListModel<Artikel> auswahl) {
+		this.auswahl = auswahl;
+	}
+	*/
 	public Controller()
 	{
 		grafik = new GUI();		
@@ -120,10 +129,23 @@ public class Controller {
 		}
 	}
 	
-	private void Produktsave()
+	private void Produktsave() // Auswahl zur Abspeicherung
 	{
-		JFileChooser chooser = new JFileChooser();
-		chooser.showOpenDialog(null);
+		if(auswahl.isEmpty() == false && grafik.getTextFieldKundenname().getText().length() != 0)
+		{
+			JFileChooser chooser = new JFileChooser("C:\\Users\\Chris\\Desktop\\Java\\Kaufhauskunde");
+			dateiHandler.dateiSchreiben(chooser.getCurrentDirectory().toString(),auswahl,grafik.getTextFieldKundenname().getText());
+			chooser.showOpenDialog(null);
+		
+			
+		}
+		else
+		{
+			System.out.println("der Wahrenkorb ist leer!");
+		}
+		
 		
 	}
+
+
 }
