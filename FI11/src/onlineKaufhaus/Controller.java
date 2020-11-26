@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 public class Controller {
 
@@ -47,9 +48,7 @@ public class Controller {
 		Produktadd();
 		grafik.getBtnNewButtonAddWare().addActionListener(e -> auswahlHinzufuegen(grafik.getListWarehouse().getSelectedValuesList()));
 		grafik.getBtnNewButtonCancelWare().addActionListener(e -> auswahlEntfernen(grafik.getListShoppingCart().getSelectedValuesList()));
-		
-		Produktsave();
-		
+		grafik.getButtonSubmitOrder().addActionListener(e -> Produktsave());
 		
 		
 	}
@@ -74,7 +73,6 @@ public class Controller {
 			System.out.println("Ware konnte nicht gelöscht werden");
 		}
 	}
-	//-------------------------------------------------------------
 	
 	private void auswahlHinzufuegen(List artikel)
 	{
@@ -124,6 +122,8 @@ public class Controller {
 	
 	private void Produktsave()
 	{
+		JFileChooser chooser = new JFileChooser();
+		chooser.showOpenDialog(null);
 		
 	}
 }
