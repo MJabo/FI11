@@ -43,22 +43,5 @@ public class DHIO extends DateiHandler {
 		
 		
 	}
-	
-	
-	
-	
-
-	@Override
-	public void dateiSchreiben(ArrayList arraylist, String filename) {
-		
-		
-		
-	}
-
-	@Override
-	public ArrayList<Artikel> dateilesen(ArrayList arraylist, String filname) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
